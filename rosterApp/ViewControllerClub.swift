@@ -31,10 +31,10 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell")!
         return cell
     }
 
-
+//testing if stays
 
 }
