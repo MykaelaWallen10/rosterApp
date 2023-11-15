@@ -11,9 +11,10 @@
 import UIKit
 
 class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    
    
-    
-    
+    var students = [Students()]
 
     @IBOutlet weak var TableOutlet: UITableView!
     
@@ -31,14 +32,14 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
     
     
     @IBAction func addNameAction(_ sender: UIBarButtonItem) {
-        
+        students.append(addNameTextField.text!)
         
     }
     
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Students.people.count
+        return students.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
