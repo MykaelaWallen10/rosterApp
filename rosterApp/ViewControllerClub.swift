@@ -13,7 +13,8 @@ import UIKit
 class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
     
-
+    @IBOutlet weak var TableOutlet: UITableViewCell!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

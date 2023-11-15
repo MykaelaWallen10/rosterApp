@@ -8,13 +8,19 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var toClubAction: UIButton!
+    
+    
+    @IBOutlet weak var clubNameTextField: UITextField!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
-//hello
+
     
     
 }
