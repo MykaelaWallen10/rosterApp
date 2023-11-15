@@ -21,11 +21,9 @@ class ViewController: UIViewController {
     
     
     @IBAction func tooClubAction(_ sender: Any) {
-        performSegue(withIdentifier: "tooClub", sender: nil)
+        performSegue(withIdentifier: "toClub", sender: nil)
     }
-    //mykaela
-    
-//avery
+  
     
     
 }
