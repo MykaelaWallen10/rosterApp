@@ -20,7 +20,10 @@ class ViewController: UIViewController {
     }
     
     
-
+    @IBAction func tooClubAction(_ sender: Any) {
+        performSegue(withIdentifier: "tooClub", sender: nil)
+    }
+    
 
     
     
