@@ -35,7 +35,6 @@
                     <navigationItem key="navigationItem" id="bgc-B3-0nB"/>
                     <connections>
                         <outlet property="clubNameTextField" destination="82P-gP-eiK" id="pkm-Hg-Ns2"/>
-                        <outlet property="toClubAction" destination="dUq-rx-b8V" id="fmI-bF-XW2"/>
                         <segue destination="7vC-Ju-WIs" kind="show" identifier="toClub" id="WIE-ot-xzz"/>
                     </connections>
                 </viewController>
@@ -73,6 +72,7 @@
                     <navigationItem key="navigationItem" id="RSs-zF-VY7">
                         <nil key="title"/>
                         <textField key="titleView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="0mj-p1-hx0">
+                            <rect key="frame" x="180.66666666666666" y="5" width="32" height="34"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
@@ -87,7 +87,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="TableOutlet" destination="fyf-DD-OuB" id="Rue-eZ-tZs"/>
+                        <outlet property="TableOutlet" destination="sGM-2C-IoR" id="CnP-T6-cTg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="00i-ax-ifU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

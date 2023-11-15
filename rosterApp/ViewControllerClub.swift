@@ -13,13 +13,14 @@ import UIKit
 class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
     
-    @IBOutlet weak var TableOutlet: UITableViewCell!
+
+    @IBOutlet weak var TableOutlet: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //TableOutlet.delegate = self
-        //TableOutlet.dataSource = self
+        TableOutlet.delegate = self
+        TableOutlet.dataSource = self
 
         
     }
@@ -30,8 +31,8 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell") as! CrazyCell
-        //return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell")
+        return cell
     }
 
 

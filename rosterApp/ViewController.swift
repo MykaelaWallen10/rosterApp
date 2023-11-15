@@ -9,8 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var toClubAction: UIButton!
-    
+
     
     @IBOutlet weak var clubNameTextField: UITextField!
     
@@ -19,6 +18,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+    
+    
 
 
     
