@@ -16,6 +16,9 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
 
     @IBOutlet weak var TableOutlet: UITableView!
     
+    @IBOutlet weak var addNameTextField: UITextField!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +27,13 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
 
         
     }
+    
+    
+    @IBAction func addNameAction(_ sender: UIBarButtonItem) {
+        
+        
+    }
+    
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -35,6 +45,5 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
 
-//testing if stays
-//hello 2
+
 }
