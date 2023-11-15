@@ -10,7 +10,7 @@ import Foundation
 class Students{
     
     //call as Students.people
-    static var people = String
-    static var attended = Int
+    static var people = ""
+    static var attended = 0
     
 }
