@@ -7,10 +7,11 @@
 
 import Foundation
 
-class Students{
+struct Students{
+    
     
     //call as Students.people
-    static var people = ""
-    static var attended = 0
+     var people : String
+
     
 }
