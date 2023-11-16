@@ -32,7 +32,8 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
     
     
     @IBAction func addNameAction(_ sender: UIBarButtonItem) {
-        students.append(addNameTextField.text!)
+        let s = addNameTextField.text!
+       // students.append()
         
     }
     
