@@ -22,13 +22,16 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var addNameTextField: UITextField!
     
     
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         TableOutlet.delegate = self
         TableOutlet.dataSource = self
 
-        
+        titleLabel.text = ClubName.title
     }
     
     
@@ -41,7 +44,9 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
         }
         else{
             var stud = Students(people: addNameTextField.text!)
+            TableOutlet.reloadData()
         }
+  
        
         
         
