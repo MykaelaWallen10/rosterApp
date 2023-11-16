@@ -14,7 +14,8 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
     
     
    var x = 0
-    var students = [Students.self]
+    
+    var students = [Students]()
 
     @IBOutlet weak var TableOutlet: UITableView!
     
@@ -59,6 +60,20 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell")!
         return cell
+    }
+    
+    
+    
+    //clicking kid
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if let fake = tableView.cellForRow(at: indexPath)?.textLabel?.text{
+            students[indexPath.row].people = "\(students[indexPath.row].people) \(x)"
+            TableOutlet.reloadData()
+            
+          
+            
+        }
     }
 
 

@@ -53,8 +53,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sGM-2C-IoR">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sGM-2C-IoR">
                                 <rect key="frame" x="0.0" y="113" width="393" height="705"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RZN-mq-5wx">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
@@ -77,15 +78,6 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ytm-CH-gim"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="sGM-2C-IoR" firstAttribute="leading" secondItem="Ytm-CH-gim" secondAttribute="leading" id="47u-6e-Bs2"/>
-                            <constraint firstItem="sGM-2C-IoR" firstAttribute="top" secondItem="Ytm-CH-gim" secondAttribute="top" id="5aL-4T-8tj"/>
-                            <constraint firstItem="Ytm-CH-gim" firstAttribute="trailing" secondItem="sGM-2C-IoR" secondAttribute="trailing" id="JUL-eV-2Zk"/>
-                            <constraint firstItem="sGM-2C-IoR" firstAttribute="top" secondItem="Ytm-CH-gim" secondAttribute="top" id="OWv-we-8fW"/>
-                            <constraint firstItem="sGM-2C-IoR" firstAttribute="top" secondItem="Ytm-CH-gim" secondAttribute="top" id="agb-j9-YVw"/>
-                            <constraint firstItem="Ytm-CH-gim" firstAttribute="bottom" secondItem="sGM-2C-IoR" secondAttribute="bottom" id="cwl-WO-Epc"/>
-                            <constraint firstItem="sGM-2C-IoR" firstAttribute="top" secondItem="Ytm-CH-gim" secondAttribute="top" constant="10" id="xxG-GR-PDD"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="RSs-zF-VY7">
                         <nil key="title"/>
