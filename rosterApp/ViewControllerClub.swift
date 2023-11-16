@@ -13,8 +13,8 @@ import UIKit
 class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
-   
-    var students = [Students()]
+   var x = 0
+    var students = [Students.self]
 
     @IBOutlet weak var TableOutlet: UITableView!
     
@@ -32,7 +32,19 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
     
     
     @IBAction func addNameAction(_ sender: UIBarButtonItem) {
-        students.append(addNameTextField.text!)
+      
+        let name = addNameTextField.text!
+        
+        if(addNameTextField.text?.isEmpty ?? true){
+            
+        }
+        else{
+            var stud = Students(people: addNameTextField.text!)
+        }
+       
+        
+        
+      
         
     }
     
