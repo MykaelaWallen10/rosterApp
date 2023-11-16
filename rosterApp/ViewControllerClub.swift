@@ -66,6 +66,8 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell")!
+        
+        cell.textLabel?.text = students[indexPath.row].people
         return cell
     }
     
