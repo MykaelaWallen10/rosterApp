@@ -14,11 +14,14 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
     
     
    var x = 0
-    var students = [Students.self]
+    var students = [Students]()
 
     @IBOutlet weak var TableOutlet: UITableView!
     
     @IBOutlet weak var addNameTextField: UITextField!
+    
+    
+    @IBOutlet weak var titleLabel: UILabel!
     
     
     
@@ -27,7 +30,7 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
         TableOutlet.delegate = self
         TableOutlet.dataSource = self
 
-        
+        titleLabel.text = ClubName.title
     }
     
     
@@ -40,7 +43,9 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
         }
         else{
             var stud = Students(people: addNameTextField.text!)
+            TableOutlet.reloadData()
         }
+  
        
         
         

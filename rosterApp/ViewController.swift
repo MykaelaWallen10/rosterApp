@@ -7,6 +7,11 @@
 
 import UIKit
 
+class ClubName{
+    static var title = ""
+    
+}
+
 class ViewController: UIViewController {
     
 
@@ -22,6 +27,8 @@ class ViewController: UIViewController {
     
     @IBAction func tooClubAction(_ sender: Any) {
         performSegue(withIdentifier: "toClub", sender: nil)
+        
+        ClubName.title = clubNameTextField.text!
     }
   
     
