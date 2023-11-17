@@ -46,6 +46,9 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
             var stud = Students(people: addNameTextField.text!)
             TableOutlet.reloadData()
         }
+        //hello
+        
+        
   
        
         
