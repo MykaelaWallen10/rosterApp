@@ -11,7 +11,7 @@
 import UIKit
 
 class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+    let defaults = UserDefaults.standard
     
    var x = 0
     
@@ -35,6 +35,13 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
        
 
         titleLabel.text = ClubName.title
+        
+        if let items = defaults.data(forKey: "theStudents"){
+            let decoder = JSONDecoder()
+            if let decoded = try? decoder.decode([Students].self, from: items){
+                students = decoded
+            }
+        }
     }
     
     
@@ -57,6 +64,7 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
        
     
     @IBAction func addNameAction(_ sender: UIBarButtonItem) {
+       // defaults.setValue("")
         let name = addNameTextField.text!
         
         if(addNameTextField.text?.isEmpty ?? true){
@@ -67,6 +75,11 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
             let stud = Students(people: name)
            students.append(stud)
            TableOutlet.reloadData()
+            
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(students){
+                defaults.set(encoded, forKey: "theStudents")
+            }
         }
     
     }

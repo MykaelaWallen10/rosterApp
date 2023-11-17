@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Students{
+struct Students: Codable{
     
     
     //call as Students.people
@@ -16,10 +16,3 @@ struct Students{
     
 }
 
-//class Students {
-   // var people: String
-    
-   // init(people: String){
-    //    self.people = people
-   // }
-//}
