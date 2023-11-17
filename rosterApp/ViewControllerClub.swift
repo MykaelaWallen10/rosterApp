@@ -11,7 +11,7 @@
 import UIKit
 
 class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+    let defaults = UserDefaults.standard
     
    var x = 0
     
@@ -32,34 +32,17 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         TableOutlet.delegate = self
         TableOutlet.dataSource = self
+       
 
         titleLabel.text = ClubName.title
-    }
-    
-    
-    @IBAction func addNameAction(_ sender: UIBarButtonItem) {
-      
-        let name = addNameTextField.text!
         
-        if(addNameTextField.text?.isEmpty ?? true){
-            
+        if let items = defaults.data(forKey: "theStudents"){
+            let decoder = JSONDecoder()
+            if let decoded = try? decoder.decode([Students].self, from: items){
+                students = decoded
+            }
         }
-        else{
-            var stud = Students(people: addNameTextField.text!)
-            TableOutlet.reloadData()
-        }
-        //hello
-        
-        
-  
-       
-        
-        
-      
-        
     }
-    
-    
     
     
     
@@ -71,12 +54,42 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell")!
-        
-        cell.textLabel?.text = students[indexPath.row].people
+        cell.textLabel?.text = String(students[indexPath.row].people)
         return cell
+        
+        
     }
     
+
+       
     
+    @IBAction func addNameAction(_ sender: UIBarButtonItem) {
+       // defaults.setValue("")
+        let name = addNameTextField.text!
+        
+        if(addNameTextField.text?.isEmpty ?? true){
+            
+       }
+        else{
+    
+            let stud = Students(people: name)
+           students.append(stud)
+           TableOutlet.reloadData()
+            
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(students){
+                defaults.set(encoded, forKey: "theStudents")
+            }
+        }
+    
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            students.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
     
     //clicking kid
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

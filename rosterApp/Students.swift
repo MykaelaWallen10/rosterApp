@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Students{
+struct Students: Codable{
     
     
     //call as Students.people
