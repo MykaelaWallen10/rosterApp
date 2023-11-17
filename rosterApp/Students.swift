@@ -11,7 +11,15 @@ struct Students{
     
     
     //call as Students.people
-     var people : String
+    var people : String
 
     
 }
+
+//class Students {
+   // var people: String
+    
+   // init(people: String){
+    //    self.people = people
+   // }
+//}
