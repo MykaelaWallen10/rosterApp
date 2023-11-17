@@ -92,16 +92,36 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     //clicking kid
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+ //   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if let fake = tableView.cellForRow(at: indexPath)?.textLabel?.text{
-            students[indexPath.row].people = "\(students[indexPath.row].people) \(x)"
-            TableOutlet.reloadData()
+   //     if let fake = tableView.cellForRow(at: indexPath)?.textLabel?.text{
+   //         students[indexPath.row].people = "\(students[indexPath.row].people) \(x)"
+    //        TableOutlet.reloadData()
             
           
             
+     //   }
+   // }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Assuming 'x' is a variable that stores the initial value to be displayed in each cell
+        var x = 0
+        
+        if let cell = tableView.cellForRow(at: indexPath) {
+            // Extract the current value from the cell's text label
+            if let currentValue = cell.textLabel?.text, let currentNumber = Int(currentValue) {
+                // Increment the current value by 1
+                x = currentNumber + 1
+            }
         }
+        
+        // Update the data source with the new value
+        students[indexPath.row].people = "\(x)"
+        
+        // Reload the table view to reflect the changes
+        tableView.reloadData()
     }
+
 
 
 }
