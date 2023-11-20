@@ -52,9 +52,12 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell")!
-        cell.textLabel?.text = String(students[indexPath.row].people)
+        
+        let student = students[indexPath.row]
+        cell.textLabel?.text = student.people //String(students[indexPath.row].people)
+        cell.detailTextLabel?.text = "Name: \(student.people)"
+        
         return cell
         
         
@@ -103,25 +106,30 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
      //   }
    // }
     
+   
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Assuming 'x' is a variable that stores the initial value to be displayed in each cell
         var x = 0
         
         if let cell = tableView.cellForRow(at: indexPath) {
             // Extract the current value from the cell's text label
-            if let currentValue = cell.textLabel?.text, let currentNumber = Int(currentValue) {
+            if let currentValue = cell.textLabel?.text, let currentNumber = Int(currentValue.replacingOccurrences(of: "Name: ", with: "")) {
                 // Increment the current value by 1
                 x = currentNumber + 1
             }
         }
         
         // Update the data source with the new value
-        students[indexPath.row].people = "\(x)"
+        
+        students[indexPath.row].people = "Name: \(x)"
+        
         
         // Reload the table view to reflect the changes
-        tableView.reloadData()
+        tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 
 
 
 }
+
