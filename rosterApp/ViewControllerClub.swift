@@ -12,8 +12,7 @@ import UIKit
 
 class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let defaults = UserDefaults.standard
-    
-   var x = 0
+
     
     var students = [Students]()
     
@@ -90,35 +89,26 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
-    
-    //clicking kid
- //   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-   //     if let fake = tableView.cellForRow(at: indexPath)?.textLabel?.text{
-   //         students[indexPath.row].people = "\(students[indexPath.row].people) \(x)"
-    //        TableOutlet.reloadData()
-            
-          
-            
-     //   }
-   // }
-    
+
+  //clicking
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Assuming 'x' is a variable that stores the initial value to be displayed in each cell
+       
         var x = 0
         
         if let cell = tableView.cellForRow(at: indexPath) {
-            // Extract the current value from the cell's text label
+            
             if let currentValue = cell.textLabel?.text, let currentNumber = Int(currentValue) {
-                // Increment the current value by 1
+                
                 x = currentNumber + 1
+                
+                cell.detailTextLabel?.text = "\(x)"
             }
         }
         
-        // Update the data source with the new value
-        students[indexPath.row].people = "\(x)"
         
-        // Reload the table view to reflect the changes
+        students[indexPath.row].people = "\(students[indexPath.row].people) "
+   
+    
         tableView.reloadData()
     }
 
