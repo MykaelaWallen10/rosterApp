@@ -13,6 +13,7 @@ class ClubName{
 }
 
 class ViewController: UIViewController {
+    let defaults = UserDefaults.standard
     
 
     
@@ -22,6 +23,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        if let clubThing = defaults.data(forKey: "theClub"){
+            let decoder = JSONDecoder()
+            if let decoded = try? decoder.decode([ClubName.title].self, from: clubThing){
+                ClubName.title = decoded
+            }
+        }
     }
     
     
@@ -29,6 +37,11 @@ class ViewController: UIViewController {
         performSegue(withIdentifier: "toClub", sender: nil)
         
         ClubName.title = clubNameTextField.text!
+        
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(ClubName.title){
+            defaults.setClassName(encoded, for: "theClub")
+        }
     }
   
     
