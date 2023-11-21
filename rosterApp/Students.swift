@@ -16,3 +16,10 @@ struct Students: Codable{
     
 }
 
+//class Students {
+   // var people: String
+    
+   // init(people: String){
+    //    self.people = people
+   // }
+//}
