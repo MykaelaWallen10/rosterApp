@@ -12,12 +12,12 @@ import UIKit
 
 class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let defaults = UserDefaults.standard
-
     
+    var x = 0
     var students = [Students]()
     
-  
-
+    
+    
     @IBOutlet weak var TableOutlet: UITableView!
     
     @IBOutlet weak var addNameTextField: UITextField!
@@ -31,8 +31,8 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         TableOutlet.delegate = self
         TableOutlet.dataSource = self
-       
-
+        
+        
         titleLabel.text = ClubName.title
         
         if let items = defaults.data(forKey: "theStudents"){
@@ -51,36 +51,39 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell")!
-        cell.textLabel?.text = String(students[indexPath.row].people)
+        
+        let student = students[indexPath.row]
+        cell.textLabel?.text = student.people
+        cell.detailTextLabel?.text = "\(x)"
+        
         return cell
         
         
     }
     
-
-       
+    
+    
     
     @IBAction func addNameAction(_ sender: UIBarButtonItem) {
-       // defaults.setValue("")
+    
         let name = addNameTextField.text!
         
         if(addNameTextField.text?.isEmpty ?? true){
             
-       }
+        }
         else{
-    
+            
             let stud = Students(people: name)
-           students.append(stud)
-           TableOutlet.reloadData()
+            students.append(stud)
+            TableOutlet.reloadData()
             
             let encoder = JSONEncoder()
             if let encoded = try? encoder.encode(students){
                 defaults.set(encoded, forKey: "theStudents")
             }
         }
-    
+        
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -89,29 +92,40 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
-
-  //clicking
+    
+ 
+    
+    
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       
-        var x = 0
+        
+     
         
         if let cell = tableView.cellForRow(at: indexPath) {
             
-            if let currentValue = cell.textLabel?.text, let currentNumber = Int(currentValue) {
-                
-                x = currentNumber + 1
-                
-                cell.detailTextLabel?.text = "\(x)"
-            }
+            
+            if let currentValue = cell.textLabel?.text, let currentNumber = Int(currentValue.replacingOccurrences(of: "Name ", with: "")) {
+                    
+                    
+                    x = currentNumber + 1
+                    tableView.reloadData()
+                    
+                    
+                }
+            
+   
+            
+            students[indexPath.row].people = "Name: \(x)"
+            
+            
+            
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+            
         }
         
         
-        students[indexPath.row].people = "\(students[indexPath.row].people) "
-   
-    
-        tableView.reloadData()
+        
     }
-
-
-
 }
+
