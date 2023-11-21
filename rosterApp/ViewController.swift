@@ -9,6 +9,9 @@ import UIKit
 
 class ClubName{
     static var title = ""
+    //hello
+    var g = 0
+    
     
 }
 
