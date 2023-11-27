@@ -16,9 +16,11 @@ class ClubName{
 }
 
 class ViewController: UIViewController {
-    let defaults = UserDefaults.standard
+    let defaultsClub = UserDefaults.standard
     
-
+    var name = String(ClubName.title)
+    
+   static var clubName = ""
     
     @IBOutlet weak var clubNameTextField: UITextField!
     
@@ -27,11 +29,14 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        if let clubThing = defaults.data(forKey: "theClub"){
+      //  ViewController.clubName = defaultsClub.string(forKey: "theClub") ?? ""
+       
+        
+        if let clubThing = defaultsClub.data(forKey: "theClub"){
             let decoder = JSONDecoder()
-            if let decoded = try? decoder.decode([ClubName.title].self, from: clubThing){
-                ClubName.title = decoded
-            }
+            if let decoded = try? decoder.decode([name].self, from: clubThing){
+                name = decoded
+         }
         }
     }
     
@@ -41,9 +46,11 @@ class ViewController: UIViewController {
         
         ClubName.title = clubNameTextField.text!
         
+        //defaultsClub.set(name, forKey: "theClub")
+  
         let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(ClubName.title){
-            defaults.setClassName(encoded, for: "theClub")
+        if let encoded = try? encoder.encode(name){
+            defaultsClub.set(encoded, forKey: "theClub")
         }
     }
   

@@ -36,6 +36,7 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
         
         titleLabel.text = ClubName.title
         
+        
         if let items = defaults.data(forKey: "theStudents"){
             let decoder = JSONDecoder()
             if let decoded = try? decoder.decode([Students].self, from: items){
