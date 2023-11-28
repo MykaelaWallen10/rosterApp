@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     
     var name = AppData.title
     
+   static var tableThing = 0
   
     
     @IBOutlet weak var clubNameTextField: UITextField!
@@ -42,8 +43,11 @@ class ViewController: UIViewController {
     
     
     @IBAction func tooClubAction(_ sender: Any) {
+        
         performSegue(withIdentifier: "toClub", sender: nil)
          
+        ViewController.tableThing = 2
+        
         AppData.title = clubNameTextField.text!
         
         
@@ -51,11 +55,14 @@ class ViewController: UIViewController {
   
         currentClub.text = AppData.title
         
+        
       
     }
   
     @IBAction func currentClub(_ sender: Any) {
         performSegue(withIdentifier: "toClub", sender: nil)
+        
+        ViewController.tableThing = 0
         
         AppData.title = defaultsClub.string(forKey: "theClub3") ?? ""
     }

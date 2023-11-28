@@ -36,6 +36,12 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
         
         titleLabel.text = AppData.title
      
+        if ViewController.tableThing == 2 {
+           // TableOutlet.
+            print(students)
+            TableOutlet.reloadData()
+        }
+        
         
         if let items = defaults.data(forKey: "theStudents2"){
             let decoder = JSONDecoder()
@@ -73,6 +79,7 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
          let name = addNameTextField.text!
         
         
+        
         if(addNameTextField.text?.isEmpty ?? true){
             
         }
@@ -82,9 +89,12 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
             students.append(stud)
             TableOutlet.reloadData()
             
+            
+            
             let encoder = JSONEncoder()
             if let encoded = try? encoder.encode(students){
                 defaults.set(encoded, forKey: "theStudents2")
+                
             }
         }
         
@@ -94,6 +104,13 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
         if editingStyle == .delete{
             students.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(students){
+                defaults.set(encoded, forKey: "theStudents2")
+            }
+        
+            
         }
     }
     
@@ -110,25 +127,12 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
         
   if let cell = tableView.cellForRow(at: indexPath) {
         
-//        //if let currentValue = cell.textLabel?.text, let currentNumber = Int(currentValue.replacingOccurrences(of: "Name ", with: "")) {
-//      
-//                
-//                x = currentNumber + 1
-//                tableView.reloadData()
-//                
-//                
-//            }
-//        
-//
-//        
-//        students[indexPath.row].people = "Name: \(x)"
-       
+
       var tempValue = Int(cell.detailTextLabel!.text!) ?? 0
         tempValue += 1
       cell.detailTextLabel?.text = "\(tempValue)"
-       //tableView.reloadRows(at: [indexPath], with: .automatic)
-      
-      print (cell.detailTextLabel?.text)
+       
+     
 
    }
     
