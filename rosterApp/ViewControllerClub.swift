@@ -34,10 +34,10 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
         TableOutlet.dataSource = self
         
         
-        titleLabel.text = ClubName.title
+        titleLabel.text = AppData.title
+     
         
-        
-        if let items = defaults.data(forKey: "theStudents"){
+        if let items = defaults.data(forKey: "theStudents2"){
             let decoder = JSONDecoder()
             if let decoded = try? decoder.decode([Students].self, from: items){
                 students = decoded
@@ -57,7 +57,7 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
         
         let student = students[indexPath.row]
         cell.textLabel?.text = student.people
-        cell.detailTextLabel?.text = "\(x)"
+        cell.detailTextLabel?.text = "\(0)"
         
         return cell
         
@@ -69,7 +69,9 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func addNameAction(_ sender: UIBarButtonItem) {
     
-        let name = addNameTextField.text!
+        
+         let name = addNameTextField.text!
+        
         
         if(addNameTextField.text?.isEmpty ?? true){
             
@@ -82,7 +84,7 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
             
             let encoder = JSONEncoder()
             if let encoded = try? encoder.encode(students){
-                defaults.set(encoded, forKey: "theStudents")
+                defaults.set(encoded, forKey: "theStudents2")
             }
         }
         
@@ -106,28 +108,30 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
         
      
         
-        if let cell = tableView.cellForRow(at: indexPath) {
-            
-            
-            if let currentValue = cell.textLabel?.text, let currentNumber = Int(currentValue.replacingOccurrences(of: "Name ", with: "")) {
-                    
-                    
-                    x = currentNumber + 1
-                    tableView.reloadData()
-                    
-                    
-                }
-            
-   
-            
-            students[indexPath.row].people = "Name: \(x)"
-            
-            
-            
-            tableView.reloadRows(at: [indexPath], with: .automatic)
-            
-        }
+  if let cell = tableView.cellForRow(at: indexPath) {
         
+//        //if let currentValue = cell.textLabel?.text, let currentNumber = Int(currentValue.replacingOccurrences(of: "Name ", with: "")) {
+//      
+//                
+//                x = currentNumber + 1
+//                tableView.reloadData()
+//                
+//                
+//            }
+//        
+//
+//        
+//        students[indexPath.row].people = "Name: \(x)"
+       
+      var tempValue = Int(cell.detailTextLabel!.text!) ?? 0
+        tempValue += 1
+      cell.detailTextLabel?.text = "\(tempValue)"
+       //tableView.reloadRows(at: [indexPath], with: .automatic)
+      
+      print (cell.detailTextLabel?.text)
+
+   }
+    
         
         
     }

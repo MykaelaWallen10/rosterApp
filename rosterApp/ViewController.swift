@@ -7,10 +7,10 @@
 
 import UIKit
 
-class ClubName{
+class AppData {
     static var title = ""
-    //hello
-    var g = 0
+   
+   
     
     
 }
@@ -18,42 +18,47 @@ class ClubName{
 class ViewController: UIViewController {
     let defaultsClub = UserDefaults.standard
     
-    var name = String(ClubName.title)
+    var name = AppData.title
     
-   static var clubName = ""
+  
     
     @IBOutlet weak var clubNameTextField: UITextField!
+    
+    @IBOutlet weak var currentClub: UILabel!
+    
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
-      //  ViewController.clubName = defaultsClub.string(forKey: "theClub") ?? ""
+         
+        AppData.title = defaultsClub.string(forKey: "theClub3") ?? ""
+        
+        currentClub.text = AppData.title
        
+      
         
-        if let clubThing = defaultsClub.data(forKey: "theClub"){
-            let decoder = JSONDecoder()
-            if let decoded = try? decoder.decode([name].self, from: clubThing){
-                name = decoded
-         }
-        }
     }
     
     
     @IBAction func tooClubAction(_ sender: Any) {
         performSegue(withIdentifier: "toClub", sender: nil)
+         
+        AppData.title = clubNameTextField.text!
         
-        ClubName.title = clubNameTextField.text!
         
-        //defaultsClub.set(name, forKey: "theClub")
+        defaultsClub.set(AppData.title, forKey: "theClub3")
   
-        let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(name){
-            defaultsClub.set(encoded, forKey: "theClub")
-        }
+        currentClub.text = AppData.title
+        
+      
     }
   
+    @IBAction func currentClub(_ sender: Any) {
+        performSegue(withIdentifier: "toClub", sender: nil)
+        
+        AppData.title = defaultsClub.string(forKey: "theClub3") ?? ""
+    }
     
     
 }
