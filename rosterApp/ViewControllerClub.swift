@@ -16,7 +16,7 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
     
     var x = 0
     var students = [Students]()
-    
+    var tf = true
     
     
     @IBOutlet weak var TableOutlet: UITableView!
@@ -35,13 +35,8 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
         
         
         titleLabel.text = AppData.title
-     
-        if ViewController.tableThing == 2 {
-           // TableOutlet.
-            print(students)
-            TableOutlet.reloadData()
-        }
         
+       
         
         if let items = defaults.data(forKey: "theStudents2"){
             let decoder = JSONDecoder()
@@ -59,6 +54,9 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+     
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell")!
         
         let student = students[indexPath.row]
@@ -72,72 +70,83 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
     
     
     
+    @IBAction func reloadTable(_ sender: UIBarButtonItem) {
+        if AppData.tableThing == 2 {
+            students = []
+            //print(students)
+           TableOutlet.reloadData()
+        }
+    }
+    
+    
+    
+    
     
     @IBAction func addNameAction(_ sender: UIBarButtonItem) {
-    
-        
-         let name = addNameTextField.text!
         
         
+        let name = addNameTextField.text!
         
-        if(addNameTextField.text?.isEmpty ?? true){
-            
-        }
-        else{
-            
-            let stud = Students(people: name)
-            students.append(stud)
-            TableOutlet.reloadData()
-            
-            
+        
+        
+      
+        
+                
+                
+               
+                let stud = Students(people: name)
+              students.append(stud)
+             TableOutlet.reloadData()
+             
             
             let encoder = JSONEncoder()
             if let encoded = try? encoder.encode(students){
-                defaults.set(encoded, forKey: "theStudents2")
+                   defaults.set(encoded, forKey: "theStudents2")
+                  
+            }
+            
+            
+        }
+        
+        func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+            if editingStyle == .delete{
+                students.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                
+                let encoder = JSONEncoder()
+                if let encoded = try? encoder.encode(students){
+                    defaults.set(encoded, forKey: "theStudents2")
+                }
+                
                 
             }
         }
         
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete{
-            students.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            
-            let encoder = JSONEncoder()
-            if let encoded = try? encoder.encode(students){
-                defaults.set(encoded, forKey: "theStudents2")
-            }
         
+        
+        
+        
+        
+        
+        
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            
+            
+            
+            if let cell = tableView.cellForRow(at: indexPath) {
+                
+                
+                var tempValue = Int(cell.detailTextLabel!.text!) ?? 0
+                tempValue += 1
+                cell.detailTextLabel?.text = "\(tempValue)"
+                
+                
+                
+            }
+            
+            
             
         }
     }
     
- 
-    
-    
-    
-    
-   
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-     
-        
-  if let cell = tableView.cellForRow(at: indexPath) {
-        
-
-      var tempValue = Int(cell.detailTextLabel!.text!) ?? 0
-        tempValue += 1
-      cell.detailTextLabel?.text = "\(tempValue)"
-       
-     
-
-   }
-    
-        
-        
-    }
-}
 

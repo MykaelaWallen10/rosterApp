@@ -9,7 +9,7 @@ import UIKit
 
 class AppData {
     static var title = ""
-   
+   static var tableThing = 0
    
     
     
@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     
     var name = AppData.title
     
-   static var tableThing = 0
+    var students = [Students]()
   
     
     @IBOutlet weak var clubNameTextField: UITextField!
@@ -46,7 +46,8 @@ class ViewController: UIViewController {
         
         performSegue(withIdentifier: "toClub", sender: nil)
          
-        ViewController.tableThing = 2
+        AppData.tableThing = 2
+       
         
         AppData.title = clubNameTextField.text!
         
@@ -62,7 +63,7 @@ class ViewController: UIViewController {
     @IBAction func currentClub(_ sender: Any) {
         performSegue(withIdentifier: "toClub", sender: nil)
         
-        ViewController.tableThing = 0
+        AppData.tableThing = 0
         
         AppData.title = defaultsClub.string(forKey: "theClub3") ?? ""
     }

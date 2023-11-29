@@ -133,11 +133,18 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="n3r-4l-6Xd">
-                            <connections>
-                                <action selector="addNameAction:" destination="7vC-Ju-WIs" id="kqJ-LS-YDa"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="refresh" id="BtQ-TJ-bFX">
+                                <connections>
+                                    <action selector="reloadTable:" destination="7vC-Ju-WIs" id="bIJ-M0-41V"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="add" id="n3r-4l-6Xd">
+                                <connections>
+                                    <action selector="addNameAction:" destination="7vC-Ju-WIs" id="kqJ-LS-YDa"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
