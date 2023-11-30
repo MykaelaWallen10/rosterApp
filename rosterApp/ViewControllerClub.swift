@@ -74,8 +74,17 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
         if AppData.tableThing == 2 {
             students = []
             //print(students)
-           TableOutlet.reloadData()
+           
         }
+        
+        //add the encoder and move reload
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(students){
+               defaults.set(encoded, forKey: "theStudents2")
+              
+        }
+        
+        TableOutlet.reloadData()
     }
     
     
@@ -90,14 +99,108 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
         
         
       
-        
+        for i in students{
+
+                    if(name.lowercased() == i.people.lowercased()){
+
+                        tf = false
+
+                        let alert = UIAlertController(title: "Duplicate!", message: "This student is already on the list", preferredStyle: .alert)
+
+                        
+
+                        //2 create actions
+
+                        let okAction = UIAlertAction(title: "OK!", style: .default){(ACTION)
+
+                            in
+
+                            
+
+                            self.tf = false
+
+                        }
+
+                        
+
+                        let sortAgain = UIAlertAction(title: "Add anyway!", style: .default){(ACTION) in
+
+                            if(self.addNameTextField.text?.isEmpty ?? true){
+
+                                
+
+                            }
+
+                            else{
+
+                                
+
+                                let stud = Students(people: name)
+
+                                self.students.append(stud)
+
+                                self.TableOutlet.reloadData()
+
+                                
+
+                                let encoder = JSONEncoder()
+
+                                if let encoded = try? encoder.encode(self.students){
+
+                                    self.defaults.set(encoded, forKey: "theStudents")
+
+                                    self.addNameTextField.text = ""
+
+                                }
+
+                            }
+
+                            
+
+                        }
+
+                        alert.addAction(okAction)
+
+                        alert.addAction(sortAgain)
+
+                        
+
+                        present(alert, animated: true)
+
+                    }
+
+                    
+
+                    
+
+                }
+
+                
+
+                if(tf == true){
+
+                    if(addNameTextField.text?.isEmpty ?? true){
+
+                    }
+
+                    else{
+
+                        let stud = Students(people: name)
+
+                        students.append(stud)
+
+                        TableOutlet.reloadData()
+
+                    }
+
+                }
                 
                 
-               
-                let stud = Students(people: name)
-              students.append(stud)
-             TableOutlet.reloadData()
-             
+//               
+//                let stud = Students(people: name)
+//              students.append(stud)
+//             TableOutlet.reloadData()
+//             
             
             let encoder = JSONEncoder()
             if let encoded = try? encoder.encode(students){
@@ -149,4 +252,6 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+
+
 

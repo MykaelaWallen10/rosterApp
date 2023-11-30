@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     
     var name = AppData.title
     
-    var students = [Students]()
+ 
   
     
     @IBOutlet weak var clubNameTextField: UITextField!
@@ -45,6 +45,8 @@ class ViewController: UIViewController {
     @IBAction func tooClubAction(_ sender: Any) {
         
         performSegue(withIdentifier: "toClub", sender: nil)
+        
+        
          
         AppData.tableThing = 2
        
