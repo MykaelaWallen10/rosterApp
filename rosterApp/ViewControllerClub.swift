@@ -190,6 +190,7 @@ class ViewControllerClub: UIViewController, UITableViewDelegate, UITableViewData
                         students.append(stud)
 
                         TableOutlet.reloadData()
+                        addNameTextField.text = ""
 
                     }
 
